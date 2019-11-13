@@ -7,6 +7,9 @@
 
 import UIKit
 
+// Вообще довольно чисто и хорошо написано, замечаний почти нет)
+// Не хватает возможность просмотреть номер телефона, а не просто позвонить
+
 class ContactsVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!

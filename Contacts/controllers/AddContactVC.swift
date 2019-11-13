@@ -11,7 +11,7 @@ class AddContactVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let cells: [AddingContactCellType] = [.name, .secondaryName, .phone]
+    let cells: [AddingContactCell.ViewType] = [.name, .secondaryName, .phone]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,7 @@ extension AddContactVC: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        if let type = AddingContactCellType.init(rawValue: indexPath.row) {
+        if let type = AddingContactCell.ViewType(rawValue: indexPath.row) {
             cell.configureWith(type: type)
         }
         

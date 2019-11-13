@@ -7,15 +7,19 @@
 
 import UIKit
 
-enum AddingContactCellType: Int {
-    case name
-    case secondaryName
-    case phone
-}
-
 class AddingContactCell: UITableViewCell {
     
-    var type: AddingContactCellType = .name
+    // Переместил внутрь класса с ячейкой и переименовал
+    // Теперь не будем мешаться в тех местах, где нам
+    // не нужен этот enum, а доступ к нему можно получить
+    // через AddingContactCell.ViewType
+    enum ViewType: Int {
+        case name
+        case secondaryName
+        case phone
+    }
+    
+    var type: ViewType = .name
 
     @IBOutlet weak var textField: UITextField!
     
@@ -24,7 +28,7 @@ class AddingContactCell: UITableViewCell {
         textField.delegate = self
     }
     
-    func configureWith(type: AddingContactCellType) {
+    func configureWith(type: ViewType) {
         switch type {
         case .name:
             textField.placeholder = "Имя"
