@@ -38,11 +38,18 @@ class AddContactVC: UIViewController {
         let secondaryName = secondaryNameCell.textField.text ?? ""
         let phone = phoneCell.textField.text ?? ""
         
-        let newContact = Contact(name: name, secondaryName: secondaryName, phone: phone)
-        ContactsManager.shared.contacts.append(newContact)
-        ContactsManager.shared.saveToUD()
+        Spinner.shared.show(in: view)
+        API.createContact(name: name, secondaryName: secondaryName, phone: phone) { (success) in
+            Spinner.shared.hide()
+            if success {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                let alert = UIAlertController(title: nil, message: "При создании контакта произошла ошибка", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
         
-        navigationController?.popViewController(animated: true)
     }
 
 }

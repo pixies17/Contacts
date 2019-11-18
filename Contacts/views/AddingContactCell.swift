@@ -9,10 +9,6 @@ import UIKit
 
 class AddingContactCell: UITableViewCell {
     
-    // Переместил внутрь класса с ячейкой и переименовал
-    // Теперь не будем мешаться в тех местах, где нам
-    // не нужен этот enum, а доступ к нему можно получить
-    // через AddingContactCell.ViewType
     enum ViewType: Int {
         case name
         case secondaryName

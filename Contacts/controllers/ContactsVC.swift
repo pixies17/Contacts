@@ -25,12 +25,16 @@ class ContactsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateContacts()
-        tableView.reloadData()
-        showAlertIfNeeded()
     }
     
     func updateContacts() {
-        contacts = ContactsManager.shared.contacts.sorted(by: {$0.secondaryName != $1.secondaryName ? ($0.secondaryName < $1.secondaryName) : ($0.name < $1.name)})
+        Spinner.shared.show(in: view)
+        API.loadContacts { (contacts) in
+            Spinner.shared.hide()
+            self.contacts = contacts
+            self.tableView.reloadData()
+            self.showAlertIfNeeded()
+        }
     }
 
     private func configureTableView() {
@@ -65,14 +69,23 @@ extension ContactsVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete,
-            let index = ContactsManager.shared.contacts.firstIndex(of: contacts[indexPath.row])
-        else { return }
-        ContactsManager.shared.contacts.remove(at: index)
-        ContactsManager.shared.saveToUD()
-        updateContacts()
+        guard editingStyle == .delete else { return }
         
-        tableView.deleteRows(at: [indexPath], with: .automatic)
+        let contact = contacts[indexPath.row]
+        Spinner.shared.show(in: view)
+        API.deleteContact(id: contact.id) { (success) in
+            Spinner.shared.hide()
+             if success {
+                guard let index = self.contacts.firstIndex(of: contact) else { return }
+                self.contacts.remove(at: index)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            } else {
+                let alert = UIAlertController(title: nil, message: "При удалении контакта произошла ошибка", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        
     }
 }
 

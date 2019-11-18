@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qjo-jj-3K1">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,19 +15,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yEw-OL-hD3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yEw-OL-hD3">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="contactsCell" id="MbJ-K4-V3l" customClass="ContactsCell" customModule="Contacts" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MbJ-K4-V3l" id="3gI-8M-WlS">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="71"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вася Пупкин" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8b-fS-dqV">
-                                                    <rect key="frame" x="20" y="19.666666666666668" width="374" height="21.000000000000004"/>
+                                                    <rect key="frame" x="20" y="14" width="374" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFt-9r-g90">
+                                                    <rect key="frame" x="20" y="37" width="374" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -35,12 +41,16 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="a8b-fS-dqV" firstAttribute="leading" secondItem="3gI-8M-WlS" secondAttribute="leading" constant="20" id="AlC-hS-ecu"/>
+                                                <constraint firstItem="yFt-9r-g90" firstAttribute="trailing" secondItem="a8b-fS-dqV" secondAttribute="trailing" id="ICG-Wo-ofJ"/>
+                                                <constraint firstItem="yFt-9r-g90" firstAttribute="top" secondItem="a8b-fS-dqV" secondAttribute="bottom" constant="2" id="Wdb-rv-rpL"/>
                                                 <constraint firstAttribute="trailing" secondItem="a8b-fS-dqV" secondAttribute="trailing" constant="20" id="XhX-5K-ER9"/>
-                                                <constraint firstItem="a8b-fS-dqV" firstAttribute="centerY" secondItem="3gI-8M-WlS" secondAttribute="centerY" id="amq-0N-hHg"/>
+                                                <constraint firstItem="yFt-9r-g90" firstAttribute="leading" secondItem="a8b-fS-dqV" secondAttribute="leading" id="cY7-dm-aUF"/>
+                                                <constraint firstItem="a8b-fS-dqV" firstAttribute="top" secondItem="3gI-8M-WlS" secondAttribute="top" constant="14" id="vnG-Q8-EVc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLabel" destination="a8b-fS-dqV" id="dW0-Se-IbN"/>
+                                            <outlet property="phoneLabel" destination="yFt-9r-g90" id="ckF-8M-wJu"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
