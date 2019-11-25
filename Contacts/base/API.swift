@@ -71,13 +71,10 @@ enum API {
     }
     
     static func deleteContact(id: String, completion: @escaping (Bool) -> Void) {
-        guard let url = URL(string: baseURL + "\(storageName).json") else { return }
+        guard let url = URL(string: baseURL + "\(storageName)/\(id).json/") else { return }
+      
         var request = URLRequest(url: url)
-        
-        let params = ["id": id]
-        
         request.httpMethod = "DELETE"
-        request.httpBody = try? JSONSerialization.data(withJSONObject: params)
         
         let task = URLSession.shared.dataTask(with: request) { (_, _, error) in
             DispatchQueue.main.async {
